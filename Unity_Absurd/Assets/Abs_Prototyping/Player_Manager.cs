@@ -8,8 +8,11 @@ public class Player_Manager : MonoBehaviour{
     public Game_Manager gameManager;
 
     public float playerReach = 5f;
+    
     public LayerMask layerMaskFloor = 9;
+    public LayerMask layerMaskConstructor = 10;
     public LayerMask layerMaskCore = 12;
+    public LayerMask layerMaskPillars = 13;
     //public LayerMask layerMaskDefault = 0;
     public bool colliding = false;
 
@@ -18,7 +21,12 @@ public class Player_Manager : MonoBehaviour{
     public void Awake()
     {
         gameManager = FindObjectOfType<Game_Manager>();
-
+        
+        ///YOU HAVE TO DO THIS STUPID FUCKING BULLSHIT
+        layerMaskFloor = 1 << 9;
+        layerMaskConstructor = 1 << 10;
+        layerMaskCore = 1 << 12;
+        layerMaskPillars = 1 << 13;
     }
     public void ConstructMode()
     {
@@ -49,29 +57,42 @@ public class Player_Manager : MonoBehaviour{
         Build();
     }
 
-    public void Construction(bool can_construct)
+    public void Construction(bool constructing)
     {
         
-        if (can_construct ==  true)
+        if (constructing ==  true)
         {
             RaycastHit hitLevel;
-
+            RaycastHit hitObstacle;
             Ray rayPlayer = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0f));
-            
+            gameManager._coreConstructorMat.color = Color.red;
+            canBuild = false;
+            bool notHittingShit = true;
+
+            ///A catch for the constructor to not make a core when one already exists or looking at a pillar.
+            ///
+            if (Physics.Raycast(rayPlayer, out hitObstacle, playerReach, layerMaskCore | layerMaskPillars))
+            {
+                Debug.Log("IM LOOKING AT CORE");
+                Debug.DrawLine(Camera.main.transform.position, hitObstacle.point, Color.blue);
+                notHittingShit = false;
+
+            }
+
 
             if (Physics.Raycast(rayPlayer, out hitLevel, playerReach, layerMaskFloor))
             {
-                //Can't instantiate because it'll just repeat all the fucking time.
-                Debug.Log("Did hit floor");
+                Debug.DrawLine(Camera.main.transform.position, hitLevel.point, Color.blue);
                 RaycastHit hitOther;
                 
+
                 ///Kill yourself
+                /*
                 Debug.DrawRay(gameManager._coreConstructor.transform.position + new Vector3(0f, .05f, 0f), Vector3.forward + Vector3.forward, Color.red);
                 Debug.DrawRay(gameManager._coreConstructor.transform.position + new Vector3(0f, .05f, 0f), Vector3.left + Vector3.left, Color.yellow);
                 Debug.DrawRay(gameManager._coreConstructor.transform.position + new Vector3(0f, .05f, 0f), Vector3.right + Vector3.right, Color.blue);
                 Debug.DrawRay(gameManager._coreConstructor.transform.position + new Vector3(0f, .05f, 0f), Vector3.back + Vector3.back, Color.cyan);
-
-                bool notHittingShit = true;
+                */
 
                 ///Cardinal directions plus the inbetween so 8 points of contact.
                 if (Physics.Raycast(hitLevel.point + new Vector3(0f, .05f, 0f), Vector3.forward, out hitOther, 2f) == true) 
@@ -106,17 +127,16 @@ public class Player_Manager : MonoBehaviour{
                 {
                     notHittingShit = false;
                 }
-
+                
                 if (notHittingShit)
                 {
-                    gameManager._coreConstructor.transform.position = hitLevel.point;
-                    
+                    gameManager._coreConstructorMat.color = Color.green;
+                    canBuild = true;
                 }
-                ///Don't put in notHittingShit because if up against a wall, you're still hitting shit but the construct has space.
-                canBuild = true;
-                Debug.Log("I Can build right now");
+                
             }
-            
+            //Constantly move the constructor so you can see where it can/can't be built.
+           gameManager._coreConstructor.transform.position = hitLevel.point;
         }
     }
 
@@ -138,7 +158,7 @@ public class Player_Manager : MonoBehaviour{
     public void Update()
     {
         ConstructMode();
-
+        
     }
 }
 

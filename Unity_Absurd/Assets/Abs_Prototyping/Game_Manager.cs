@@ -13,11 +13,16 @@ public class Game_Manager : MonoBehaviour {
     //Don't make this a prefab. (Yet...jk who am I kidding, I won't fucking finish this project)
     public GameObject coreConstructorPrefab;
     public GameObject _coreConstructor;
+    public Material _coreConstructorMat;
 
     public void Start()
     {
         _coreConstructor = Instantiate(coreConstructorPrefab);
+        Renderer rend = _coreConstructor.GetComponent<Renderer>();
+        _coreConstructorMat = rend.material;
+
         _coreConstructor.SetActive(false);
+        
     }
 
 }

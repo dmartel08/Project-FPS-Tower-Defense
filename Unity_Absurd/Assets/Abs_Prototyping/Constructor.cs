@@ -13,5 +13,4 @@ public class Constructor : MonoBehaviour {
         playerManager = FindObjectOfType<Player_Manager>();
     }
 
-  
 }
