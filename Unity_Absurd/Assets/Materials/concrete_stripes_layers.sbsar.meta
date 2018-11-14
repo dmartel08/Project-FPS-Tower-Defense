@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: 49f7540d6080c9640ad20ca5af0e6432
+ScriptedImporter:
+  fileIDToRecycleName:
+    100000: concrete_stripes_layers/concrete_stripes_layers
+    400000: concrete_stripes_layers/concrete_stripes_layers/Transform
+    2100000: mat.Concrete Stripes Layers
+    2100002: mat.Concrete Stripes Layers_1
+    2300000: concrete_stripes_layers/concrete_stripes_layers/MeshRenderer
+    2800000: Concrete Stripes Layers_baseColor
+    2800002: Concrete Stripes Layers_normal
+    2800004: Concrete Stripes Layers_metallic
+    2800006: Concrete Stripes Layers_height
+    2800008: Concrete Stripes Layers_ambientOcclusion
+    2800010: Concrete Stripes Layers_1_baseColor
+    2800012: Concrete Stripes Layers_1_normal
+    2800014: Concrete Stripes Layers_1_metallic
+    2800016: Concrete Stripes Layers_1_height
+    2800018: Concrete Stripes Layers_1_ambientOcclusion
+    3300000: concrete_stripes_layers/concrete_stripes_layers/MeshFilter
+    11400000: sbsar
+    11400002: graph0
+    11400004: graph1
+    13500000: concrete_stripes_layers/concrete_stripes_layers/SphereCollider
+    100100000: concrete_stripes_layers
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 13
+  mGraphInstanceData:
+  - graphLabel: Concrete Stripes Layers
+    prototypeName: Concrete Stripes Layers
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://concrete_stripes_layers\" label=\"\" >\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: baseColor,normal,metallic,height,ambientOcclusion
+    texturePackingList:
+    - outputName: diffuse
+      alphaSource: diffuse
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: specular
+      alphaSource: specular
+    - outputName: glossiness
+      alphaSource: glossiness
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    - outputName: ambientOcclusion
+      alphaSource: ambientOcclusion
+    textureParameters:
+    - textureName: Concrete Stripes Layers_glossiness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_diffuse
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_specular
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_ambientOcclusion
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: diffuse
+      bLinear: 0
+    - outputName: baseColor
+      bLinear: 0
+    - outputName: normal
+      bLinear: 1
+    - outputName: specular
+      bLinear: 0
+    - outputName: glossiness
+      bLinear: 1
+    - outputName: roughness
+      bLinear: 1
+    - outputName: metallic
+      bLinear: 1
+    - outputName: height
+      bLinear: 1
+    - outputName: ambientOcclusion
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {fileID: 2100000, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    generatedTextures:
+    - {fileID: 2800000, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    - {fileID: 2800002, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    - {fileID: 2800004, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    - {fileID: 2800006, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    - {fileID: 2800008, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+  - graphLabel: Concrete Stripes Layers_1
+    prototypeName: Concrete Stripes Layers
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://concrete_stripes_layers\" label=\"\" >\n  <presetinput
+      identifier=\"$outputsize\" uid=\"3024929688\" type=\"8\" value=\"11,11\" />\n
+      \ <presetinput identifier=\"$randomseed\" uid=\"3812545994\" type=\"4\" value=\"3778\"
+      />\n  <presetinput identifier=\"concrete_color\" uid=\"3254624156\" type=\"2\"
+      value=\"0.754717,0.754717,0.754717\" />\n  <presetinput identifier=\"concrete_stripes_x\"
+      uid=\"3239769980\" type=\"4\" value=\"16\" />\n  <presetinput identifier=\"concrete_stripes_y\"
+      uid=\"3239767786\" type=\"4\" value=\"4\" />\n  <presetinput identifier=\"stripes_intensity\"
+      uid=\"3239668445\" type=\"0\" value=\"0.222\" />\n  <presetinput identifier=\"cracks_density\"
+      uid=\"3252864621\" type=\"0\" value=\"0.419\" />\n  <presetinput identifier=\"cracks_intensity\"
+      uid=\"3253478868\" type=\"0\" value=\"0.516\" />\n  <presetinput identifier=\"layer_damage_spread\"
+      uid=\"3254620142\" type=\"0\" value=\"0.68\" />\n  <presetinput identifier=\"roughness\"
+      uid=\"3253792933\" type=\"0\" value=\"0.719\" />\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: baseColor,normal,metallic,height,ambientOcclusion
+    texturePackingList:
+    - outputName: diffuse
+      alphaSource: diffuse
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: specular
+      alphaSource: specular
+    - outputName: glossiness
+      alphaSource: glossiness
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    - outputName: ambientOcclusion
+      alphaSource: ambientOcclusion
+    textureParameters:
+    - textureName: Concrete Stripes Layers_1_glossiness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_1_diffuse
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_1_baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_1_normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_1_specular
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_1_roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_1_metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_1_height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Concrete Stripes Layers_1_ambientOcclusion
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: diffuse
+      bLinear: 0
+    - outputName: baseColor
+      bLinear: 0
+    - outputName: normal
+      bLinear: 1
+    - outputName: specular
+      bLinear: 0
+    - outputName: glossiness
+      bLinear: 1
+    - outputName: roughness
+      bLinear: 1
+    - outputName: metallic
+      bLinear: 1
+    - outputName: height
+      bLinear: 1
+    - outputName: ambientOcclusion
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 2048
+      textureHeight: 2048
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {fileID: 2100002, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    generatedTextures:
+    - {fileID: 2800010, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    - {fileID: 2800012, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    - {fileID: 2800014, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    - {fileID: 2800016, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
+    - {fileID: 2800018, guid: 49f7540d6080c9640ad20ca5af0e6432, type: 3}
