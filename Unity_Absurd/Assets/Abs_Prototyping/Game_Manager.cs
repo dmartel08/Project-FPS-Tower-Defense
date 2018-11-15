@@ -8,6 +8,9 @@ public class Game_Manager : MonoBehaviour {
     public GameObject enemyPrefab;
     public GameObject corePrefab;
 
+    public GameObject playerSpawn;
+
+
     //This needs to exist in scene because my code sucks ass. Can't instantiate an instance so need to 
     //pull from somewhere already existing in the scene.
     //Don't make this a prefab. (Yet...jk who am I kidding, I won't fucking finish this project)

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Abs_Prototyping\Constructor.cs" />
     <Compile Include="Assets\Abs_Prototyping\Game_Manager.cs" />
+    <Compile Include="Assets\Abs_Prototyping\Hazard.cs" />
     <Compile Include="Assets\Abs_Prototyping\Player_Manager.cs" />
     <None Include="Assets\Allegorithmic\Plugins\EULA.txt" />
     <Reference Include="UnityEditor.StandardEvents">

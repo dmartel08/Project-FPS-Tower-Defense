@@ -4,40 +4,71 @@ using UnityEngine;
 
 public class Player_Manager : MonoBehaviour{
 
-    public bool constructing;
+    
     public Game_Manager gameManager;
 
-    public float playerReach = 5f;
-    
+    public GameObject playerWeapon;
+    public GameObject playerBlueprint;
+
+    public Animator weaponAnimator;
+
+    public float playerBlueprintReach = 5f;
+
+
+    [Space(16)]
+    [Header("LayerMasks")]
     public LayerMask layerMaskFloor = 9;
     public LayerMask layerMaskConstructor = 10;
     public LayerMask layerMaskCore = 12;
     public LayerMask layerMaskPillars = 13;
-    //public LayerMask layerMaskDefault = 0;
-    public bool colliding = false;
 
+    public bool constructing;
+    public bool colliding = false;
     public bool canBuild = false;
+    public bool canAttack = true;
 
     public void Awake()
     {
         gameManager = FindObjectOfType<Game_Manager>();
-        
+
+        weaponAnimator = playerWeapon.GetComponent<Animator>();
         ///YOU HAVE TO DO THIS STUPID FUCKING BULLSHIT
         layerMaskFloor = 1 << 9;
         layerMaskConstructor = 1 << 10;
         layerMaskCore = 1 << 12;
         layerMaskPillars = 1 << 13;
     }
+
+    public void Update()
+    {
+        ConstructMode();
+        Attack();
+    }
+
+    public void Attack()
+    {
+        if (canAttack)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                weaponAnimator.SetTrigger("Attack_Stab");
+            }
+        }
+    }
+
     public void ConstructMode()
     {
         //Can't fucking instantiate because it will repeat continously.
-        //GameObject _core = Instantiate(gameManager.coreConstructorPrefab, transform.forward* 1f, Quaternion.identity);
         if (constructing == false)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Turned *on* construction mode");
                 constructing = true;
+                canAttack = false;
+                playerWeapon.SetActive(false);
+                playerBlueprint.SetActive(true);
+
                 gameManager._coreConstructor.SetActive(true);
             }
         }
@@ -47,8 +78,13 @@ public class Player_Manager : MonoBehaviour{
             {
                 Debug.Log("Turned *off* construction mode");
                 constructing = false;
+                canAttack = true;
+
                 canBuild = false;
-                //gameManager.coreConstructorPrefab.transform.position = new Vector3(0, 0, 0);
+
+                playerWeapon.SetActive(true);
+                playerBlueprint.SetActive(false);
+
                 gameManager._coreConstructor.SetActive(false);
             }
         }
@@ -71,29 +107,20 @@ public class Player_Manager : MonoBehaviour{
 
             ///A catch for the constructor to not make a core when one already exists or looking at a pillar.
             ///
-            if (Physics.Raycast(rayPlayer, out hitObstacle, playerReach, layerMaskCore | layerMaskPillars))
+            if (Physics.Raycast(rayPlayer, out hitObstacle, playerBlueprintReach, layerMaskCore | layerMaskPillars))
             {
-                Debug.Log("IM LOOKING AT CORE");
+
                 Debug.DrawLine(Camera.main.transform.position, hitObstacle.point, Color.blue);
                 notHittingShit = false;
 
             }
 
 
-            if (Physics.Raycast(rayPlayer, out hitLevel, playerReach, layerMaskFloor))
+            if (Physics.Raycast(rayPlayer, out hitLevel, playerBlueprintReach, layerMaskFloor))
             {
                 Debug.DrawLine(Camera.main.transform.position, hitLevel.point, Color.blue);
                 RaycastHit hitOther;
                 
-
-                ///Kill yourself
-                /*
-                Debug.DrawRay(gameManager._coreConstructor.transform.position + new Vector3(0f, .05f, 0f), Vector3.forward + Vector3.forward, Color.red);
-                Debug.DrawRay(gameManager._coreConstructor.transform.position + new Vector3(0f, .05f, 0f), Vector3.left + Vector3.left, Color.yellow);
-                Debug.DrawRay(gameManager._coreConstructor.transform.position + new Vector3(0f, .05f, 0f), Vector3.right + Vector3.right, Color.blue);
-                Debug.DrawRay(gameManager._coreConstructor.transform.position + new Vector3(0f, .05f, 0f), Vector3.back + Vector3.back, Color.cyan);
-                */
-
                 ///Cardinal directions plus the inbetween so 8 points of contact.
                 if (Physics.Raycast(hitLevel.point + new Vector3(0f, .05f, 0f), Vector3.forward, out hitOther, 2f) == true) 
                 {
@@ -150,15 +177,16 @@ public class Player_Manager : MonoBehaviour{
                 Instantiate(gameManager.corePrefab, gameManager._coreConstructor.transform.position, Quaternion.identity);
                 canBuild = false;
                 constructing = false;
+                canAttack = true;
+
+                playerWeapon.SetActive(true);
+                playerBlueprint.SetActive(false);
+
                 gameManager._coreConstructor.SetActive(false);
             }
         }
     }
 
-    public void Update()
-    {
-        ConstructMode();
-        
-    }
+   
 }
 
