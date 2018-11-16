@@ -1,19 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Game_Manager : MonoBehaviour {
 
+    /// <summary>
+    /// Units
+    /// </summary>
     public GameObject Player;
     public GameObject enemyPrefab;
+    public List<GameObject> enemies = null;
+
+    /// <summary>
+    /// Buildings
+    /// </summary>
     public GameObject corePrefab;
-
+    public GameObject core = null;
+    /// <summary>
+    /// Spawns
+    /// </summary>
     public GameObject playerSpawn;
+    public List<GameObject> enemySpawns;
 
-
-    //This needs to exist in scene because my code sucks ass. Can't instantiate an instance so need to 
-    //pull from somewhere already existing in the scene.
-    //Don't make this a prefab. (Yet...jk who am I kidding, I won't fucking finish this project)
+    /// <summary>
+    /// Building constructors
+    /// </summary>
     public GameObject coreConstructorPrefab;
     public GameObject _coreConstructor;
     public Material _coreConstructorMat;
@@ -24,8 +36,37 @@ public class Game_Manager : MonoBehaviour {
         Renderer rend = _coreConstructor.GetComponent<Renderer>();
         _coreConstructorMat = rend.material;
 
+        ///So it's not in your face. Can't start inactive otherwise parameters don't get assigned.
         _coreConstructor.SetActive(false);
         
     }
 
+    public void AttackPhase()
+    {
+        
+        //Spawn units
+        foreach (GameObject enemySpawn in enemySpawns)
+        {
+            GameObject enemy = Instantiate(enemyPrefab, enemySpawn.transform.position, Quaternion.identity);
+            enemies.Add(enemy);
+        }
+
+        //Sends units
+        foreach (GameObject enemy in enemies)
+        {
+            if (core != null)
+            {
+                NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
+                agent.destination = core.transform.position;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            AttackPhase();
+        }
+    }
 }

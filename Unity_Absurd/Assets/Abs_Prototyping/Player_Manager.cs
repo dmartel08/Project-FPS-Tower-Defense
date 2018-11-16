@@ -12,7 +12,7 @@ public class Player_Manager : MonoBehaviour{
 
     public Animator weaponAnimator;
 
-    public float playerBlueprintReach = 5f;
+    public float playerBlueprintReach = 6f;
 
 
     [Space(16)]
@@ -56,6 +56,16 @@ public class Player_Manager : MonoBehaviour{
         }
     }
 
+    public void FightMode()
+    {
+        constructing = false;
+        canAttack = true;
+        canBuild = false;
+        playerWeapon.SetActive(true);
+        playerBlueprint.SetActive(false);
+        gameManager._coreConstructor.SetActive(false);
+    }
+
     public void ConstructMode()
     {
         //Can't fucking instantiate because it will repeat continously.
@@ -64,6 +74,7 @@ public class Player_Manager : MonoBehaviour{
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Turned *on* construction mode");
+
                 constructing = true;
                 canAttack = false;
                 playerWeapon.SetActive(false);
@@ -77,15 +88,9 @@ public class Player_Manager : MonoBehaviour{
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Turned *off* construction mode");
-                constructing = false;
-                canAttack = true;
 
-                canBuild = false;
-
-                playerWeapon.SetActive(true);
-                playerBlueprint.SetActive(false);
-
-                gameManager._coreConstructor.SetActive(false);
+                FightMode();
+                
             }
         }
 
@@ -112,7 +117,8 @@ public class Player_Manager : MonoBehaviour{
 
                 Debug.DrawLine(Camera.main.transform.position, hitObstacle.point, Color.blue);
                 notHittingShit = false;
-
+                ///This way it doesn't reset to world origin.
+                gameManager._coreConstructor.transform.position = hitObstacle.point;
             }
 
 
@@ -160,10 +166,11 @@ public class Player_Manager : MonoBehaviour{
                     gameManager._coreConstructorMat.color = Color.green;
                     canBuild = true;
                 }
-                
+
+                ///Constantly move the constructor so you can see where it can/can't be built.
+                gameManager._coreConstructor.transform.position = hitLevel.point;
             }
-            //Constantly move the constructor so you can see where it can/can't be built.
-           gameManager._coreConstructor.transform.position = hitLevel.point;
+            
         }
     }
 
@@ -174,15 +181,8 @@ public class Player_Manager : MonoBehaviour{
         {
             if (Input.GetMouseButtonDown(1))
             {
-                Instantiate(gameManager.corePrefab, gameManager._coreConstructor.transform.position, Quaternion.identity);
-                canBuild = false;
-                constructing = false;
-                canAttack = true;
-
-                playerWeapon.SetActive(true);
-                playerBlueprint.SetActive(false);
-
-                gameManager._coreConstructor.SetActive(false);
+                GameObject _core = Instantiate(gameManager.corePrefab, gameManager._coreConstructor.transform.position, Quaternion.identity);
+                gameManager.core = _core;
             }
         }
     }
