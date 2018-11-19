@@ -57,7 +57,7 @@ public class Game_Manager : MonoBehaviour {
             if (core != null)
             {
                 NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
-                agent.destination = core.transform.position;
+                agent.destination = core.transform.position + new Vector3(3,0,1); //offset from the origin (make an ontriggerenter vol on the core then tell agents to stop once they reach it)
             }
         }
     }

@@ -62,9 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Abs_Prototyping\Constructor.cs" />
+    <Compile Include="Assets\Abs_Prototyping\Enemy.cs" />
     <Compile Include="Assets\Abs_Prototyping\Game_Manager.cs" />
     <Compile Include="Assets\Abs_Prototyping\Hazard.cs" />
     <Compile Include="Assets\Abs_Prototyping\Player_Manager.cs" />
+    <Compile Include="Assets\Abs_Prototyping\Weapon.cs" />
+    <Compile Include="Assets\Abs_Prototyping\Weapon_Hitbox.cs" />
     <None Include="Assets\Allegorithmic\Plugins\EULA.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Administrator/Documents/Personal_Admin/Project_11_2018/Unity_Absurd/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
