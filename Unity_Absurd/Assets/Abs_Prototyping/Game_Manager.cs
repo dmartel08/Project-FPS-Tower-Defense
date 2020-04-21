@@ -68,5 +68,14 @@ public class Game_Manager : MonoBehaviour {
         {
             AttackPhase();
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
     }
 }
