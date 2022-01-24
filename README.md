@@ -1,4 +1,4 @@
-# Project_FPS_TowerDefense
+# Prototype FPS Tower Defense
 Early Unity prototyping.
 
 ![screen-gif](./PrototypeDemo.gif)
